@@ -24,8 +24,6 @@ import topbar from "../vendor/topbar"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
-console.log(csrfToken, "TOKEN");
-
 let liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: {_csrf_token: csrfToken}
@@ -58,7 +56,6 @@ const send = document.getElementById('send');      // send button
 const channel = socket.channel('room:lobby', {});  // connect to chat "room"
 channel.join(); // join the channel.
 
-console.log(channel.on, "SOCKET");
 
 // Listening to 'shout' events
 channel.on('shout', function (payload) {
@@ -68,8 +65,6 @@ channel.on('shout', function (payload) {
 
 // Send the message to the server on "shout" channel
 function sendMessage() {
-
-  console.log("Sending msg", channel);
   
   channel.push('shout', {        
     name: name.value || "guest", // get value of "name" of person sending the message. Set guest as default
@@ -77,8 +72,6 @@ function sendMessage() {
     inserted_at: new Date()      // date + time of when the message was sent
   });
 
-  console.log(channel, "After msg Sent");
-  
   msg.value = '';                // reset the message input field for next message.
   window.scrollTo(0, document.documentElement.scrollHeight) // scroll to the end of the page on send
 }
@@ -106,7 +99,6 @@ function render_message(payload) {
   // Append to list
   ul.appendChild(li);
 
-  console.log(ul, "MSG list");
   
 }
 
