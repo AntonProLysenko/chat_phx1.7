@@ -26,6 +26,7 @@ defmodule ChatWeb.UserSocket do
   # performing token verification on connect.
   @impl true
   def connect(_params, socket, _connect_info) do
+    IO.inspect(socket, label: "PARAMS CONNECT")
     {:ok, socket}
   end
 
