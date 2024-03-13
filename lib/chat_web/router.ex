@@ -13,12 +13,25 @@ defmodule ChatWeb.Router do
   # pipeline :api do
   #   plug :accepts, ["json"]
   # end
-
+  pipeline :authOptional, do: plug(AuthPlugOptional)
   scope "/", ChatWeb do
-    pipe_through :browser
+    pipe_through [:browser, :authOptional]
 
     get "/", PageController, :home
+    get "/login", AuthController, :login
+    get "/logout", AuthController, :logout
   end
+
+
+  # define the new pipeline using auth_plug
+
+
+
+
+
+
+
+
 
   # Other scopes may use custom stacks.
   # scope "/api", ChatWeb do

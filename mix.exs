@@ -61,6 +61,7 @@ defmodule Chat.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
+      {:auth_plug, "~> 1.5"},
       {:excoveralls, "~> 0.15.2", only: [:test, :dev]} # tracking test coverage
     ]
   end
